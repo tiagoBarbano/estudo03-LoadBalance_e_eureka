@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CambioApplication<cambio>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.api.cambio.CambioApplication",
+            "projectName": "cambio",
+            "args": ""
+        }
+    ]
+}

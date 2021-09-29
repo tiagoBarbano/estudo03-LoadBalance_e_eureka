@@ -1,0 +1,50 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch ApigatewayApplication",
+            "request": "launch",
+            "mainClass": "com.api.apigateway.ApigatewayApplication"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-BookApplication<book>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.api.book.BookApplication",
+            "projectName": "book",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-CambioApplication<cambio>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.api.cambio.CambioApplication",
+            "projectName": "cambio",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-NamingServerApplication<naming-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.api.namingserver.NamingServerApplication",
+            "projectName": "naming-server",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApigatewayApplication<apigateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.api.apigateway.ApigatewayApplication",
+            "projectName": "apigateway",
+            "args": ""
+        }
+    ]
+}
