@@ -1,7 +1,5 @@
 package com.api.book.controller;
 
-import javax.persistence.Table;
-
 import com.api.book.model.BookModel;
 import com.api.book.proxy.CambioProxy;
 import com.api.book.repository.BookRepository;
