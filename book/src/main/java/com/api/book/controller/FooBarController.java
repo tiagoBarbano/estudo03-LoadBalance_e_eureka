@@ -13,7 +13,10 @@ import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "Foo Bar")
 @RestController
 @RequestMapping("book-service")
 public class FooBarController {
@@ -22,6 +25,7 @@ public class FooBarController {
 
     private long tempoInicial = System.currentTimeMillis();
  
+    @Operation(summary = "FooBar")
     @GetMapping("/foo-bar")
     //@Retry(name = "foo-bar", fallbackMethod = "fallbackMethod")
     //@CircuitBreaker(name = "default", fallbackMethod = "fallbackMethod")

@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "Cambio endPoint")
 @RestController
 @RequestMapping("cambio-service")
 public class CambioController {
@@ -23,6 +27,7 @@ public class CambioController {
     @Autowired
     private CambioRepository repository;
 
+    @Operation(summary = "Realizada conversão de valor entreduas moedas especificas")
     @GetMapping(value = "/{valor}/{from}/{to}")
     public CambioModel getCambio(
                             @PathVariable("valor") BigDecimal valor,

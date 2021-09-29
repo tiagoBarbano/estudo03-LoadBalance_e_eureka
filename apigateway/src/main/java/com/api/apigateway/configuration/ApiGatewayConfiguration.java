@@ -16,8 +16,8 @@ public class ApiGatewayConfiguration {
                                     .addRequestHeader("Hello", "world")
                                     .addRequestParameter("Hello", "world"))
                         .uri("http://httpbin.org:80"))
-                .route(p -> p.path("/cambio-service/**").uri("lb://cambio-service"))
-                .route(p -> p.path("/book-service/**").uri("lb://book-service"))
+               // .route(p -> p.path("/cambio-service/**").uri("lb://cambio-service"))
+                //.route(p -> p.path("/book-service/**").uri("lb://book-service"))
                 .build();
     }
 }

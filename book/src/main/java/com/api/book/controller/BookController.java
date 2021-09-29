@@ -1,5 +1,7 @@
 package com.api.book.controller;
 
+import javax.persistence.Table;
+
 import com.api.book.model.BookModel;
 import com.api.book.proxy.CambioProxy;
 import com.api.book.repository.BookRepository;
@@ -11,6 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "Book endPoint")
 @RestController
 @RequestMapping("book-service")
 public class BookController {
@@ -24,6 +30,7 @@ public class BookController {
     @Autowired
     private CambioProxy proxy;
 
+    @Operation(summary = "Consulta um livro com base em um ID especifico")
     @GetMapping(value = "/{id}/{currency}")
     public BookModel findbook(
                     @PathVariable("id") Long id,
