@@ -1,0 +1,4 @@
+com\api\apigateway\filter\LoggingFilter.class
+com\api\apigateway\ApigatewayApplication.class
+com\api\apigateway\configuration\OpenApiConfiguration.class
+com\api\apigateway\configuration\ApiGatewayConfiguration.class

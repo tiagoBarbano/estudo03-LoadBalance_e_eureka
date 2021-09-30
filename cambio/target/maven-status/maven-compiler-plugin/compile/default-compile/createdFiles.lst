@@ -1,0 +1,5 @@
+com\api\cambio\configuration\OpenApiConfiguration.class
+com\api\cambio\CambioApplication.class
+com\api\cambio\controller\CambioController.class
+com\api\cambio\repository\CambioRepository.class
+com\api\cambio\model\CambioModel.class

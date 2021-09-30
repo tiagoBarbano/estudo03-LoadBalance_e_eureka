@@ -34,10 +34,10 @@ public class CambioController {
                             @PathVariable("from") String from,
                             @PathVariable("to") String to){
 
-        var cambio = repository.findByFromAndTo(from, to);
+        CambioModel cambio = repository.findByFromAndTo(from, to);
 
         if(cambio == null) throw new RuntimeException("Problema na conversão");
-            var port = environment.getProperty("local.server.port");
+            String port = environment.getProperty("local.server.port");
             
             BigDecimal fatorConversao = cambio.getFatorConversao();
             BigDecimal valorConvetido = fatorConversao.multiply(valor);

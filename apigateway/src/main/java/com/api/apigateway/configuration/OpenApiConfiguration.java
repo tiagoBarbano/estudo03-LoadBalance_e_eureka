@@ -19,9 +19,10 @@ public class OpenApiConfiguration {
             SwaggerUiConfigParameters config,
             RouteDefinitionLocator locator){
 
-        var definitions = locator.getRouteDefinitions().collectList().block();
+        //var definitions = locator.getRouteDefinitions().collectList().block();
         
-        definitions.stream().filter(
+        locator.getRouteDefinitions().collectList().block()
+                .stream().filter(
                     RouteDefinition -> RouteDefinition.getId()
                         .matches(".*-service"))
                             .forEach(RouteDefinition -> {

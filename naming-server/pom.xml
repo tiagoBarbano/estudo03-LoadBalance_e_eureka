@@ -60,6 +60,16 @@
 					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
 				</configuration>
 			</plugin>
+			<!-- plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<source>1.11</source>
+					<target>1.11</target>
+					<executable>D:\Dev\AdoptOpenJDK\jdk-11.0.10.9-hotspotbin\javac.exe</executable>
+				</configuration>
+			</plugin -->
 		</plugins>
 	</build>
 
