@@ -10,8 +10,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/cambio_service?useTimezone=true&serverTimezone=UTC
-    username: root
-    password: 
+    username: docker
+    password: admin123
   jpa:
     hibernate:
       ddl-auto: update
@@ -22,8 +22,8 @@ spring:
   flyway:
     url: jdbc:mysql://localhost:3306/
     schemas: cambio_service
-    user: root
-    password: 
+    user: docker
+    password: admin123
   sleuth:
     sampler:
       probability: 1.0
