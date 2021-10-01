@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: cambio-service
+  labels:
+    app: cambio-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cambio-service
+  template:
+    metadata:
+      labels:
+        app: cambio-service
+    spec:
+      containers:
+      - name: cambio-service
+        image: tiagobarbano/cambio-service
+        ports:
+        - containerPort: 8000

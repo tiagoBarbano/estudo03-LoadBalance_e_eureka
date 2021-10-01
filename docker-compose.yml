@@ -182,7 +182,7 @@ services:
 
   cambio-service:
     image: tiagobarbano/cambio-service
-    restart: always
+    restart: on-failure
     build:
       context: .
       dockerfile: cambio/Dockerfile
@@ -200,7 +200,7 @@ services:
       SPRING_RABBITMQ_HOST: rabbit-mq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
     ports:
-      - 8000:8000
+      - 8000-8099:8000
     depends_on:
       - naming-server
       - cambio-db
@@ -210,9 +210,10 @@ services:
     deploy:
       mode: replicated
       replicas: 3
+      endpoint_mode: dnsrr
       resources:
         limits:
-          cpus: '0.75'
+          cpus: '1.25'
           memory: 500M
         reservations:
           cpus: '0.25'
@@ -225,7 +226,7 @@ services:
 
   book-service:
     image: tiagobarbano/book-service
-    restart: always
+    restart: on-failure
     build:
       context: .
       dockerfile: book/Dockerfile
@@ -243,7 +244,7 @@ services:
       SPRING_RABBITMQ_HOST: rabbit-mq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
     ports:
-      - 8100:8100
+      - 8100-8199:8100
     depends_on:
       - naming-server
       - book-db
@@ -253,9 +254,10 @@ services:
     deploy:
       mode: replicated
       replicas: 3
+      endpoint_mode: dnsrr
       resources:
         limits:
-          cpus: '0.75'
+          cpus: '1.25'
           memory: 500M
         reservations:
           cpus: '0.25'

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: naming-server
+spec:
+  selector:
+    matchLabels:
+      run: naming-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: naming-server
+    spec:
+      containers:
+      - name: naming-server
+        image: tiagobarbano/naming-server:0.0.1-SNAPSHOT
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8761
+        resources:
+          limits:
+            cpu: 750m
+            memory: 800m
+          requests:
+            cpu: 500m
+            memory: 400m
