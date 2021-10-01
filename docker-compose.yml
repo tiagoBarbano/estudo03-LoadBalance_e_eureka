@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3'
 
 services:
   zipkin-server:
@@ -12,14 +12,50 @@ services:
       RABBIT_URI: amqp://guest:guest@rabbit-mq:5672
     networks:
       - estudo-network
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1000M
+        reservations:
+          cpus: '0.25'
+          memory: 200M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
 
   rabbit-mq:
     image: rabbitmq:3.8.14-management
     ports:
       - 5672:5672
       - 15672:15672
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:15672"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: always
     networks:
       - estudo-network
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 600M
+        reservations:
+          cpus: '0.25'
+          memory: 400M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
 
   cambio-db:
     image: mysql:5.7.22
@@ -39,6 +75,21 @@ services:
       - 3308
     networks:
       - estudo-network
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 500M
+        reservations:
+          cpus: '0.25'
+          memory: 200M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
       
   book-db:
     image: mysql:5.7.22
@@ -58,18 +109,50 @@ services:
       - 3310
     networks:
       - estudo-network
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 500M
+        reservations:
+          cpus: '0.25'
+          memory: 200M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
 
   naming-server:
     image: tiagobarbano/naming-server:0.0.1-SNAPSHOT
     ports:
       - 8761:8761
+    restart: always
     networks:
       - estudo-network
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 800M
+        reservations:
+          cpus: '0.50'
+          memory: 400M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
 
   apigateway:
     image: tiagobarbano/apigateway:0.0.1-SNAPSHOT
     ports:
       - 8765:8765
+    restart: always
     networks:
       - estudo-network
     depends_on:
@@ -81,6 +164,21 @@ services:
       RABBIT_URI: amqp://guest:guest@rabbit-mq:5672
       SPRING_RABBITMQ_HOST: rabbit-mq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 800M
+        reservations:
+          cpus: '0.25'
+          memory: 400M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
 
   cambio-service:
     image: tiagobarbano/cambio-service
@@ -109,6 +207,21 @@ services:
       - rabbit-mq
     networks:
       - estudo-network
+    deploy:
+      mode: replicated
+      replicas: 3
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 500M
+        reservations:
+          cpus: '0.25'
+          memory: 200M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
 
   book-service:
     image: tiagobarbano/book-service
@@ -126,7 +239,7 @@ services:
       SPRING.FLYWAY.URL: jdbc:mysql://book-db:3310/book_service?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
       SPRING.FLYWAY.USER: root
       SPRING.FLYWAY.PASSWORD: admin123
-      RABBIT_URI: amqp://guest:guest@rabbit-mq:5672
+      RABBIT_URI: amqp://guest:gu est@rabbit-mq:5672
       SPRING_RABBITMQ_HOST: rabbit-mq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
     ports:
@@ -137,6 +250,21 @@ services:
       - rabbit-mq
     networks:
       - estudo-network
+    deploy:
+      mode: replicated
+      replicas: 3
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 500M
+        reservations:
+          cpus: '0.25'
+          memory: 200M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
 
 networks:
   estudo-network:

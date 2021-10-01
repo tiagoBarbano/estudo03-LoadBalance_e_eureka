@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert
+    kompose.version: 1.24.0 (7c629530)
+  creationTimestamp: null
+  labels:
+    io.kompose.network/estudo-network: "true"
+    io.kompose.service: cambio-service
+  name: cambio-service
+spec:
+  containers:
+    - env:
+        - name: EUREKA.CLIENT.SERVICEURL.DEFAULTZONE
+          value: http://naming-server:8761/eureka
+        - name: RABBIT_URI
+          value: amqp://guest:guest@rabbit-mq:5672
+        - name: SPRING.DATASOURCE.PASSWORD
+          value: admin123
+        - name: SPRING.DATASOURCE.URL
+          value: jdbc:mysql://cambio-db:3308/cambio_service?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
+        - name: SPRING.DATASOURCE.USERNAME
+          value: root
+        - name: SPRING.FLYWAY.PASSWORD
+          value: admin123
+        - name: SPRING.FLYWAY.URL
+          value: jdbc:mysql://cambio-db:3308/cambio_service?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
+        - name: SPRING.FLYWAY.USER
+          value: root
+        - name: SPRING.ZIPKIN.BASEURL
+          value: http://zipkin-server:9411/
+        - name: SPRING_RABBITMQ_HOST
+          value: rabbit-mq
+        - name: SPRING_ZIPKIN_SENDER_TYPE
+          value: rabbit
+        - name: TZ
+          value: America/Sao_Paulo
+      image: tiagobarbano/cambio-service
+      name: cambio-service
+      ports:
+        - containerPort: 8000
+      resources:
+        limits:
+          cpu: 750m
+          memory: "524288e3"
+        requests:
+          cpu: 250m
+          memory: "209715200"
+  restartPolicy: OnFailure
+status: {}

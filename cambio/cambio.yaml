@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cambio-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cambio-service
+  template:
+    metadata:
+      labels:
+        app: cambio-service
+    spec:
+      containers:
+      - name: web
+        image: tiagobarbano/cambio-service
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8000
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: 500m 
+          requests:
+            memory: 512Mi
+            cpu: 200m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cambio-service
+  labels:
+    run: cambio-service
+spec:
+  ports:
+  - port: 8000
+  selector:
+    app: cambio-service

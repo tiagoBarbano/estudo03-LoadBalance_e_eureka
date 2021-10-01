@@ -1,5 +1,5 @@
-D:\Dev\repo\estudo03-LoadBalance\cambio\src\main\java\com\api\cambio\controller\CambioController.java
-D:\Dev\repo\estudo03-LoadBalance\cambio\src\main\java\com\api\cambio\repository\CambioRepository.java
-D:\Dev\repo\estudo03-LoadBalance\cambio\src\main\java\com\api\cambio\configuration\OpenApiConfiguration.java
-D:\Dev\repo\estudo03-LoadBalance\cambio\src\main\java\com\api\cambio\model\CambioModel.java
-D:\Dev\repo\estudo03-LoadBalance\cambio\src\main\java\com\api\cambio\CambioApplication.java
+D:\Dev\repo\estudo04-HPA\cambio\src\main\java\com\api\cambio\CambioApplication.java
+D:\Dev\repo\estudo04-HPA\cambio\src\main\java\com\api\cambio\configuration\OpenApiConfiguration.java
+D:\Dev\repo\estudo04-HPA\cambio\src\main\java\com\api\cambio\controller\CambioController.java
+D:\Dev\repo\estudo04-HPA\cambio\src\main\java\com\api\cambio\repository\CambioRepository.java
+D:\Dev\repo\estudo04-HPA\cambio\src\main\java\com\api\cambio\model\CambioModel.java
